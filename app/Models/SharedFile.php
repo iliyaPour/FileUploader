@@ -10,17 +10,21 @@ class SharedFile extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'uuid',
         'original_name',
         'file_path',
         'file_size',
         'mime_type',
         'expires_at',
-        'download_limit',
-        'download_count',
     ];
-    
+
     protected $casts = [
         'expires_at' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
